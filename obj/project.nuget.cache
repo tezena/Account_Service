@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rlCadPyS9SpkzlzZ5Za51nwuIclP5hYagBQnnc52tCzxp5vEuihHPC3PXGjxpLVEO0ztbCb9DVfx/oxwPUU7Tg==",
+  "dgSpecHash": "fCqx9RAJDk9Fvsiis/ihGaKnzZW5WYuyhtuisItzaoELBWT0O7H/TGErI8r/Wy+lDQMTFJmHXHIZaWqGmSFTrQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\us\\Documents\\C#\\MicroservicesForInventory\\AccountService\\AccountService.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\us\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.12\\microsoft.extensions.primitives.3.1.12.nupkg.sha512",
     "C:\\Users\\us\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\us\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\us\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\us\\.nuget\\packages\\mongodb.bson\\2.13.2\\mongodb.bson.2.13.2.nupkg.sha512",
     "C:\\Users\\us\\.nuget\\packages\\mongodb.driver\\2.13.2\\mongodb.driver.2.13.2.nupkg.sha512",
     "C:\\Users\\us\\.nuget\\packages\\mongodb.driver.core\\2.13.2\\mongodb.driver.core.2.13.2.nupkg.sha512",

@@ -21,11 +21,15 @@ builder.Services.AddTransient<AccountServices>();
 builder.Services.Configure<MongoDbConfig>(builder.Configuration.GetSection(nameof(MongoDbConfig)));
 
 // Register Identity
+var Host_Name = Environment.GetEnvironmentVariable("DB_HOST");
+var Db_Name = Environment.GetEnvironmentVariable("DB_NAME");
+var conectionString= $"mongodb://{Host_Name}:27017";
+
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
     .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
-        mongoDbSettings.ConnectionString,
-        mongoDbSettings.Name);
+       conectionString,
+        Db_Name);
 
 
 var app = builder.Build();

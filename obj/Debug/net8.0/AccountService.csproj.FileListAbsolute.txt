@@ -44,3 +44,4 @@ C:\Users\us\Documents\C#\MicroservicesForInventory\AccountService\obj\Debug\net8
 C:\Users\us\Documents\C#\MicroservicesForInventory\AccountService\obj\Debug\net8.0\AccountService.pdb
 C:\Users\us\Documents\C#\MicroservicesForInventory\AccountService\obj\Debug\net8.0\AccountService.genruntimeconfig.cache
 C:\Users\us\Documents\C#\MicroservicesForInventory\AccountService\obj\Debug\net8.0\ref\AccountService.dll
+C:\Users\us\Documents\C#\MicroservicesForInventory\AccountService\obj\Debug\net8.0\AccountService.sourcelink.json
