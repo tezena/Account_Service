@@ -1,7 +1,12 @@
-﻿using AccountService.Models.ViewModels;
+﻿using AccountService.Models;
+using AccountService.Models.ViewModels;
 using AccountService.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace AccountService.Controllers
 {
@@ -10,9 +15,11 @@ namespace AccountService.Controllers
     public class AccountsController : ControllerBase
     {
         public AccountServices _accountServices;
-        public AccountsController(AccountServices services)
+        private readonly IConfiguration _config;
+        public AccountsController(AccountServices services, IConfiguration config)
         {
             _accountServices = services;
+            _config = config;
         }
 
         [HttpPost("Login")]
@@ -22,11 +29,12 @@ namespace AccountService.Controllers
             if (ModelState.IsValid)
             {
 
-                var result = await _accountServices.Login(model);
+                var (result,loggedInUser) = await _accountServices.Login(model);   
 
                 if (result.Succeeded)
                 {
-                    return Ok();
+                    var token = GenerateToken(loggedInUser);
+                    return Ok(token);
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
@@ -63,6 +71,31 @@ namespace AccountService.Controllers
 
             }
             return BadRequest(new { Errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)) });
+        }
+
+
+
+        // To generate token
+        private string GenerateToken(ApplicationUser user)
+        {
+            
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.DenyOnlyPrimarySid,user.Id.ToString()),
+                new Claim(ClaimTypes.Name,user.Email)
+            };
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: credentials);
+
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
     }
 }

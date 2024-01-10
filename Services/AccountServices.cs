@@ -21,13 +21,20 @@ namespace AccountService.Services
 
 
 
-        public async Task<Microsoft.AspNetCore.Identity.SignInResult> Login(LoginVM user)
+        public async Task<(Microsoft.AspNetCore.Identity.SignInResult, ApplicationUser)> Login(LoginVM user)
         {
-
             var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.RememberMe, false);
 
-            return result;
+            ApplicationUser loggedInUser = null;
+
+            if (result.Succeeded)
+            {
+                loggedInUser = await _userManager.FindByEmailAsync(user.Email);
+            }
+
+            return (result, loggedInUser);
         }
+
 
 
 
